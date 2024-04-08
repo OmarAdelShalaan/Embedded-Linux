@@ -1,0 +1,104 @@
+# Processor and architecture
+- the bootloader and the kernel, all other components are generally architecture-independent
+# RAM and storage
+- RAM: a very basic Linux system can work within 8 MB of RAM, but a more realistic system will usually require at least 32 MB of RAM. Depends on the type and size of applications.
+- Storage: a very basic Linux system can work within 4 MB of storage, but usually more is needed.
+# Communication
+- The Linux kernel has support for many common communication buses
+        - I2C
+        - SPI
+        - 1-wire
+        - SDIO
+        - PCI
+        - USB
+        - CAN (mainly used in automotive)
+- And also extensive networking support
+        - Ethernet, Wifi, Bluetooth, CAN, etc.
+        - IPv4, IPv6, TCP, UDP, SCTP, DCCP, etc.
+        - Firewalling, advanced routing, multicast
+# Host and target
+![Host-and-target.jpg](./pic/Host-and-target.jpg)
+# Embedded Linux solutions
+-  MontaVista, Wind River or TimeSys.
+# Host vs. target
+![Host-vs-target.jpg](./pic/Host-vs-target.jpg)  
+
+# Serial line communication program
+- Minicom, Picocom, Gtkterm, Putty, screen, tmux and the new tio
+
+# Toolchain definition
+- native toolchain: runs on your workstation and generates code for your workstation, usually x86
+- cross-compiling toolchains are generally used. They run on your workstation but generate code for your target.
+![Toolchain-definition.jpg](./pic/Toolchain-definition.jpg)
+
+# Architecture tuple and toolchain prefix
+- Many UNIX/Linux build mechanisms rely on architecture tuple names to identify machines.
+- Examples: arm-linux-gnueabihf, mips64el-linux-gnu, arm-vendor-none-eabihf
+- These tuples are 3 or 4 parts:
+        1. The architecture name: arm, riscv, mips64el, etc.
+        2. Optionally, a vendor name, which is a free-form string
+        3. An operating system name, or none when not targeting an operating system
+        4. The ABI/C library (see later)
+- This tuple is used to:
+        • configure/build software for a given platform
+        • as a prefix of cross-compilation tools, to differentiate them from the native toolchain
+        gcc → native compiler
+        arm-linux-gnueabihf-gcc → cross-compiler
+
+# Components of gcc toolchains
+![Components-of-gcc-toolchains.jpg](./pic/Components-of-gcc-toolchains.jpg)
+
+# Binutils
+- Binutils: is a set of tools to generate and manipulate binaries (usually with the ELF format) for a given CPU architecture
+• as, the assembler, that generates binary code from assembler source code
+• ld, the linker
+• ar, ranlib, to generate .a archives (static libraries)
+• objdump, readelf, size, nm, strings, to inspect binaries. Very useful analysis tools!
+• objcopy, to modify binaries
+• strip, to strip parts of binaries that are just needed for debugging (reducing their
+size).
+
+# Kernel headers (1)
+- The C standard library and compiled programs need to interact with the kernel
+        • Available system calls and their numbers
+        • Constant definitions
+        • Data structures, etc.
+- Therefore, compiling the C standard library requires kernel headers, and many applications also require them.
+![Kernel_headers_1.jpg](./pic/Kernel_headers_1.jpg)
+# Kernel headers (3)
+- Hence, binaries generated with a toolchain using kernel headers older than the running kernel will work without problem, but won’t be able to use the new system calls, data structures, etc.
+- Binaries generated with a toolchain using kernel headers newer than the running kernel might work only if they don’t use the recent features, otherwise they will break.
+
+
+# Linux vs. bare-metal toolchain
+- A Linux toolchain is a toolchain that includes a Linux-ready C standard library, which uses the Linux system calls to implement system services
+        - can be used to build Linux user-space applications, but also bare-metal code (firmware, bootloader, Linux kernel)
+        - is identified by the linux OS identifier in the toolchain tuple: arm-linux, arm-none-linux-gnueabihf
+- A bare metal toolchain
+        - is a toolchain that does not include a C standard library, or a very minimal one that isn’t tied to a particular operating system
+        - can be used to build only bare-metal code (firmware, bootloader, Linux kernel) is identified by the none OS identifier in the toolchain tuple: arm-none-eabi, arm-none-none-eabi (vendor is none, OS is none)
+
+# Toolchain building utilities (3)
+- Buildroot
+        - Makefile-based. Can build glibc, uClibc and musl based toolchains, for a wide range of architectures. Use make sdk to only generate a toolchain.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
