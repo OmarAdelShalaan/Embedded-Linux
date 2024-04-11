@@ -293,12 +293,121 @@ env set, env save, etc.
 	1. Load zImage at address X in memory
 	2. Load <board>.dtb at address Y in memory
 	3. Start the kernel with boot[z|i] X - Y (The - in the middle indicates no initramfs)
-	
 
 
+# Filesystems
+- Filesystems are used to organize data in directories and files on storage devices or on the network. The directories and files are organized as a hierarchy
+- Filesystems are mounted in a specific location in this hierarchy of directories
+	- When a filesystem is mounted in a directory (called mount point), the contents of this directory reflect the contents of this filesystem.
+	- When the filesystem is unmounted, the mount point is empty again.
+- This allows applications to access files and directories easily, regardless of their exact storage location
+
+## Root filesystem
+- A particular filesystem is mounted at the root of the hierarchy, identified by /
+- This filesystem is called the root filesystem
+- As mount and umount are programs, they are files inside a filesystem.
+	- They are not accessible before mounting at least one filesystem.
+- As the root filesystem is the first mounted filesystem, it cannot be mounted with the normal mount command
+- It is mounted directly by the kernel, according to the root= kernel option
+- When no root filesystem is available, the kernel panics:
+	Please append a correct "root=" boot option
+	Kernel panic - not syncing: VFS: Unable to mount root fs on unknown block(0,0)
+
+- Location of the root filesystem
+	- It can be mounted from different locations
+	- From the partition of a hard disk
+	- From the partition of a USB key
+	- From the partition of an SD card
+	- From the partition of a NAND flash chip or similar type of storage device
+	- From the network, using the NFS protocol
+	- From memory, using a pre-loaded filesystem (by the bootloader)
+	- It is up to the system designer to choose the configuration for the system, and configure the kernel behavior with root=
+
+- Mounting rootfs from storage devices
+	- Partitions of a hard disk or USB key
+		- root=/dev/sdXY, where X is a letter indicating the device, and Y a number indicating the partition
+	- Partitions of an SD card
+		- root=/dev/mmcblkXpY, where X is a number indicating the device and Y a number indicating the partition
+	- Partitions of flash storage
+		- root=/dev/mtdblockX, where X is the partition number
+
+## Root filesystem in memory: initramfs
+It is also possible to boot the system with a filesystem in memory: initramfs
+- Either from a compressed CPIO archive integrated into the kernel image
+- Or from such an archive loaded by the bootloader into memory
+- At boot time, this archive is extracted into the Linux file cache
+- It is useful for two cases:
+	- Fast booting of very small root filesystems. As the filesystem is completely loaded at boot time, application startup is very fast.
+	- As an intermediate step before switching to a real root filesystem, located on devices for which drivers are not part of the kernel image (storage drivers, filesystem drivers, network drivers). This is always used on the kernel of desktop/server distributions to keep the kernel image size reasonable.
+
+# Root filesystem organization
+The organization of a Linux root filesystem in terms of directories is well-defined by the Filesystem Hierarchy Standard
+'''
+/bin Basic programs
+/boot Kernel images, configurations and initramfs (only when the kernel is
+loaded from a filesystem, not common on non-x86 architectures)
+/dev Device files (covered later)
+/etc System-wide configuration
+/home Directory for the users home directories
+/lib Basic libraries
+/media Mount points for removable media
+/mnt Mount point for a temporarily mounted filesystem
+/proc Mount point for the proc virtual filesystem
+/root Home directory of the root user
+/run Run-time variable data (previously /var/run)
+/sbin Basic system programs
+/sys Mount point of the sysfs virtual filesystem
+/tmp Temporary files
+/usr /usr/bin Non-basic programs
+/usr/lib Non-basic libraries
+/usr/sbin Non-basic system programs
+/var Variable data files, for system services. This includes spool directories and
+files, administrative and logging data, and transient and temporary files
+'''
+
+## Basic applications
+### init application
+- In order to work, a Linux system needs at least a few applications
+- An init application, which is the first user space application started by the kernel after mounting the root filesystem
+
+- The kernel tries to run the command specified by the init= command line parameter if available.
+- Otherwise, it tries to run /sbin/init, /etc/init, /bin/init and /bin/sh.
+- In the case of an initramfs, it will only look for /init. Another path can be supplied by the rdinit= kernel argument.
+- If none of this works, the kernel panics and the boot process is stopped.
+- The init application is responsible for starting all other user space applications and services, and for acting as a universal parent for processes whose parent terminate before they do.
+
+# Overall booting process
+![bootingprocess.jpg](./pic/bootingprocess.jpg)
+
+# Overall booting process with initramfs
+![bootingprocesswithinitramfs.jpg](./pic/bootingprocesswithinitramfs.jpg)
 
 
+# BusyBox
 
+## Why BusyBox?
+- A Linux system needs a basic set of programs to work
+	- An init program
+	- A shell
+	- Various basic utilities for file manipulation and system configuration
+- In normal GNU/Linux systems, these programs are provided by different projects
+	- coreutils, bash, grep, sed, tar, wget, modutils, etc. are all different projects
+	- A lot of different components to integrate
+	- Components not designed with embedded systems constraints in mind: they are not very configurable and have a wide range of features
+- BusyBox is an alternative solution, extremely common on embedded systems
+- Rewrite of many useful UNIX command line utilities
+	- Created in 1995 to implement a rescue and installer system for Debian, fitting in a single floppy disk (1.44 MB)
+	- Integrated into a single project, which makes it easy to work with
+	- Great for embedded systems: highly configurable, no unnecessary features
+	- Called the Swiss Army Knife of Embedded Linux
+- License: GNU GPLv2
+
+## BusyBox in the root filesystem
+- All the utilities are compiled into a single executable, /bin/busybox
+- Symbolic links to /bin/busybox are created for each application integrated into BusyBox
+
+### BusyBox in the root filesystem
+![BusyBoxintherootfilesystem.jpg](./pic/BusyBoxintherootfilesystem.jpg)
 
 
 
