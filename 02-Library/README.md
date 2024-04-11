@@ -205,8 +205,8 @@ Execute the compiled program:
 
 ## The main difference between static and dynamic libraries
 
-|    	       | static | dynamic    |
-|--------------|:------:|-----------:|
+|    	       | static | dynamic                                      |
+|--------------|:------:|---------------------------------------------:|
 | Static libraries are included in the program when it's created, so all the library's code is inside the final program | Dynamic libraries are not included in the executable during compilation. Instead, they are linked to the executable at runtime |
 | Size      |  more |     less    |
 | Portability      |  The executable can be moved to another system without worrying about library dependencies, as everything it needs is already included |     The dynamic library needs to be on the system where the program runs. If the required library version is missing, it can cause dependency problems.    |
