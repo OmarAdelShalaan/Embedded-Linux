@@ -105,6 +105,8 @@ Execute the compiled program:
 ./my_program
 ```
 
+![Static.jpg](./Static.jpg)
+
 ## Dynamic Library and Building Process
 
 ### Introduction
@@ -189,6 +191,7 @@ gcc main.c -o my_program -L. -lcalculator
 Here, `-L.` tells the linker to look for libraries in the current directory, and `-lcalculator` links your program with `libcalculator.so`.
 
 #### Move OR Copy libcalculator.so to /usr/lib
+![notFound_Lib.jpg](./notFound_Lib.jpg)
 
 #### 5. Run Your Program
 
@@ -197,6 +200,9 @@ Execute the compiled program:
 ```bash
 ./my_program
 ```
+
+![Dynamic.jpg](./Dynamic.jpg)
+
 ## The main difference between static and dynamic libraries
 
 |    	       | static | dynamic    |
@@ -205,4 +211,9 @@ Execute the compiled program:
 | Size      |  more |     less    |
 | Portability      |  The executable can be moved to another system without worrying about library dependencies, as everything it needs is already included |     The dynamic library needs to be on the system where the program runs. If the required library version is missing, it can cause dependency problems.    |
 | Loading      |  Since all code is included in the executable, there is no need for additional loading during runtime |     Dynamic libraries are loaded into memory by the operating system when the program starts or when the library is explicitly loaded during runtime    |
+
+
+![dSize.jpg](./dSize.jpg)
+
+
 
