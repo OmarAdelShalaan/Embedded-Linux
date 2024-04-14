@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Create loop device
+loop=$(sudo losetup -f --show --partscan "$SD_IMG")
+
+# Check if loop device was successfully created
+if [ $? -ne 0 ]; then
+    echo "Failed to create loop device. Exiting."
+    exit 1
+fi
+
+# Format and mount boot partition
+sudo mkfs.vfat -F 16 -n boot "$loop"p1
+
+# Check if formatting was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to format boot partition. Exiting."
+    exit 1
+#fi
+
+sudo mount "$loop"p1 "$SD_1_2/sd1/"
+
+# Check if mount was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to mount boot partition. Exiting."
+    exit 1
+fi
+
+# Format and mount rootfs partition
+sudo mkfs.ext4 -L rootfs "$loop"p2
+
+# Check if formatting was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to format rootfs partition. Exiting."
+    exit 1
+fi
+
+sudo mount "$loop"p2 "$SD_1_2/sd2/"
+
+# Check if mount was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to mount rootfs partition. Exiting."
+    exit 1
+fi
+
+lsblk
+
+echo "Script executed successfully."
