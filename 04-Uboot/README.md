@@ -479,18 +479,18 @@ env set, env save, etc.
 	if fatload mmc 0 80000000 zImage; then run mmc-do-boot; fi; fi'
 	'''
 ### U-Boot booting commands
-	- #### Commands to boot a Linux kernel image
-		- bootz → boot a compressed ARM32 zImage
-		- booti → boot an uncompressed ARM64 or RISC-V Image
-		- bootm → boot a kernel image with legacy U-Boot headers
-		- zboot → boot a compressed x86 bzImage
-	- #### bootz [addr [initrd[:size]] [fdt]]
-		- addr: address of the kernel image in RAM
-		- initrd: address of the initrd or initramfs, if any. Otherwise, must pass -
-		- fdt: address of the Device Tree passed to the Linux kernel
-	- #### Important environment variables
-		- bootcmd: list of commands executed automatically by U-Boot after the count down
-		- bootargs: Linux kernel command line
+- #### Commands to boot a Linux kernel image
+	- bootz → boot a compressed ARM32 zImage
+	- booti → boot an uncompressed ARM64 or RISC-V Image
+	- bootm → boot a kernel image with legacy U-Boot headers
+	- zboot → boot a compressed x86 bzImage
+- #### bootz [addr [initrd[:size]] [fdt]]
+	- addr: address of the kernel image in RAM
+	- initrd: address of the initrd or initramfs, if any. Otherwise, must pass -
+	- fdt: address of the Device Tree passed to the Linux kernel
+- #### Important environment variables
+	- bootcmd: list of commands executed automatically by U-Boot after the count down
+	- bootargs: Linux kernel command line
 
 ### Generic Distro boot
 - kernel_addr_r: address in RAM to load the kernel image
