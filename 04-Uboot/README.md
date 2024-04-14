@@ -460,10 +460,10 @@ env set, env save, etc.
 	- ping: ping a destination machine. Note: U-Boot is not an operating system with multitasking/interrupts, so ping from another machine to U-Boot cannot work.
 	- tftp: load a file using the TFTP protocol
 	- dhcp: get an IP address using DHCP
-'''
+```
 #### (TFTP) Trivial File Transfer Protocol
 - TFTP Network transfer from the development workstation to U-Boot on the target takes place through TFTP
-'''
+```
 
 ### Environment variables can contain small scripts, to execute several commands and test the results of commands.
 	- Useful to automate booting or upgrade processes
