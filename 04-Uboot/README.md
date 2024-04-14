@@ -212,7 +212,7 @@ sudo mkfs.vfat -F 16 -n boot ${DISK}p1
 sudo mkfs.ext4 -L rootfs ${DISK}p2
 ```
 ## qemuBashScript Run First Time
-'''bash
+```bash
 #!/bin/bash
 
 # Create loop device
@@ -261,7 +261,7 @@ fi
 lsblk
 
 echo "Script executed successfully."
-'''
+```
 ### To use script again make (mkfs) line Comment 
 
 ## Test U-Boot
