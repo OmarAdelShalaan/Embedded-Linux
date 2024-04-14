@@ -4,7 +4,7 @@
 
 
 ## Prerequisites
-	- Knowledge and practice of UNIX or GNU/Linux commands see [01-Ubuntu_Linux_Essentials](./../01-Ubuntu_Linux_Essentials)
+	- Knowledge and practice of UNIX or GNU/Linux commands see ([01-Ubuntu_Linux_Essentials](../01-Ubuntu_Linux_Essentials))
 	- Study and understanding (BOOT Squencence, cross-compilation toolchain, bootloader, root filesystem)
 	- Install Dependencies
 
