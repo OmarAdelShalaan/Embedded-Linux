@@ -50,3 +50,7 @@ IMAGE_INSTALL_append = " doxygen python3-sphinx"
 # Extra Utilities:
 - curl: Command-line tool for transferring data.
 - wget: Retrieves files from the web via HTTP, HTTPS
+- zip and unzip: Compression and decompression utilities.
+```bash
+IMAGE_INSTALL_append = " curl wget zip unzip"
+```
