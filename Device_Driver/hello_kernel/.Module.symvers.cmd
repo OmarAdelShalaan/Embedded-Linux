@@ -1,0 +1,1 @@
+savedcmd_/media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/Module.symvers :=  scripts/mod/modpost -m -a      -o /media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/Module.symvers -T /media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/modules.order -i Module.symvers -e 

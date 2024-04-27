@@ -1,0 +1,1 @@
+savedcmd_/media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/modules.order := {   echo /media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/hello_kernel.o; :; } > /media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/modules.order

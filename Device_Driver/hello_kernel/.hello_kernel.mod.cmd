@@ -1,0 +1,1 @@
+savedcmd_/media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/hello_kernel.mod := printf '%s\n'   hello_kernel.o | awk '!x[$$0]++ { print("/media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/"$$0) }' > /media/omar/SSD/Embedded_Linux_Git/myGit/Embedded-Linux/Device_Driver/hello_kernel/hello_kernel.mod
