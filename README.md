@@ -15,6 +15,21 @@ This repository contains the necessary components to build an embedded Linux sys
 - **Buildroot**: A tool that automates building embedded Linux systems.
 - **Yocto**: A flexible build system for creating custom Linux distributions for embedded systems.
 
+## Device Driver
+- 
+
+## Bootlin
+
+
+
+
+
+
+
+
+
+
+
 ## Usage
 
 To use this repository, follow the steps below:
