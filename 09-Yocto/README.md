@@ -140,6 +140,146 @@ meta-nova       /home/frank/meta-nova           6
 - **Classes:** Files ending in .bbclass. These contain common build information; for example, how to build a kernel or how to build an autotools project. The classes are inherited and extended in recipes and other classes using the inherit keyword. The classes/base.bbclass class is implicitly inherited in every recipe.
 - **Configuration:** Files ending in .conf. They define various configuration variables that govern the project's build process.
 
+## Recipe
+A recipe is a collection of tasks written in a combination of Python and shell script. The tasks have names such as do_fetch, do_unpack, do_patch, do_configure, do_ compile, and do_install.
+You **use BitBake to execute** these tasks. The default task is do_build, which performs all the subtasks required to build the recipe
+
+list the tasks available in a recipe using bitbake -c listtasks [recipe].
+- For example,
+  - list the tasks in core-image-minimal like this:
+  ```bash
+  $ bitbake -c listtasks core-image-minimal
+  ```
+```
+Important note
+The -c option tells BitBake to run a specific task from a recipe without having
+to include the do_ part at the beginning of the task's name.
+```
+
+#### To get the code for a target and all its dependencies,
+```bash
+$ bitbake core-image-minimal --runall=fetch
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -159,3 +299,5 @@ on popular single-board computers such as the BeagleBone Black and Raspberry Pi 
 - Capturing changes with devtool
 - Building your own distro
 - Provisioning a remote package server
+
+## create a recipe

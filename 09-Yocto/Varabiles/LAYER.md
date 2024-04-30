@@ -1,0 +1,3 @@
+LAYERDIR
+LAYERDEPENDS_nova = "core"
+LAYERSERIES_COMPAT_nova = "dunfell"
