@@ -17,4 +17,4 @@
 ## [Fady Khalil EmbeddedLinux Repo](https://github.com/FadyKhalil/EmbeddedLinux/tree/main)
 ## [Bootlin Embedded Linux](https://bootlin.com/training/embedded-linux/)
 ## [Moatasem Elsayed Youtube](https://www.youtube.com/@moatasemelsayed6226/playlists)
-
+## Mastering Embedded Linux Programming_3rd.pdf
