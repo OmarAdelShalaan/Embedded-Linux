@@ -18,3 +18,14 @@ To get the code for a target and all its dependencies, which is useful when you 
 make sure you have downloaded all the code for the image you are about to build, use the
 following command:
 $ bitbake core-image-minimal --runall=fetch
+
+bitbake -c listtasks example
+
+
+
+
+
+
+
+
+

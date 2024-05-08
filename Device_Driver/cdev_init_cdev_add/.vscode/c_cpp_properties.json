@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "name": "linux-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/usr/src/linux-headers-6.5.0-28-generic/",
+        "/usr/src/linux-headers-6.5.0-28-generic/include/",
+        "/usr/src/linux-headers-6.5.0-28-generic/include/linux/",
+        "/usr/src/linux-headers-6.5.0-28-generic/include/linux/",
+        "/usr/src/linux-headers-6.5.0-28-generic/include/uapi/linux/"
+      ],
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "${default}",
+      "cppStandard": "${default}",
+      "intelliSenseMode": "linux-gcc-x64",
+      "compilerArgs": [
+        ""
+      ]
+    }
+  ],
+  "version": 4
+}
